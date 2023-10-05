@@ -1,16 +1,16 @@
 export type Comment = {
 	text: string;
 	createdBy: string;
-	createdAt: Date;
-	updatedAt: Date;
+	createdAt: string;
+	updatedAt: string;
 };
 
 export type Post = {
 	title: string;
 	text: string;
 	createdBy: string;
-	createdAt: Date;
-	updatedAt: Date;
+	createdAt: string;
+	updatedAt: string;
 	comments: Comment[];
 };
 
@@ -18,15 +18,15 @@ export type Hyper = {
 	name: string;
 	description: string;
 	createdBy: string;
-	createdAt: Date;
-	updatedAt: Date;
+	createdAt: string;
+	updatedAt: string;
 	posts: Post[];
 };
 
 export type HyperDisplay = {
 	name: string;
 	createdBy: string;
-	createdAt: Date;
+	createdAt: string;
 };
 
 const isArray = (data: unknown): data is unknown[] => Array.isArray(data);
@@ -42,7 +42,7 @@ export const isHyperDisplayArray = (data: unknown): data is HyperDisplay[] =>
 			"createdAt" in element &&
 			typeof element.name === "string" &&
 			typeof element.createdBy === "string" &&
-			element.createdAt instanceof Date
+			typeof element.createdAt === "string"
 	);
 
 const isCommentArray = (data: unknown): data is Post[] =>
@@ -57,8 +57,8 @@ const isCommentArray = (data: unknown): data is Post[] =>
 			"updatedAt" in element &&
 			typeof element.text === "string" &&
 			typeof element.createdBy === "string" &&
-			element.createdAt instanceof Date &&
-			element.updatedAt instanceof Date
+			typeof element.createdAt === "string" &&
+			typeof element.updatedAt === "string"
 	);
 
 const isPostArray = (data: unknown): data is Post[] =>
@@ -76,8 +76,8 @@ const isPostArray = (data: unknown): data is Post[] =>
 			typeof element.title === "string" &&
 			typeof element.text === "string" &&
 			typeof element.createdBy === "string" &&
-			element.createdAt instanceof Date &&
-			element.updatedAt instanceof Date &&
+			typeof element.createdAt === "string" &&
+			typeof element.updatedAt === "string" &&
 			isCommentArray(element.comments)
 	);
 
@@ -94,8 +94,8 @@ export const isHyper = (data: unknown): data is Hyper => {
 		typeof data.name === "string" &&
 		typeof data.description === "string" &&
 		typeof data.createdBy === "string" &&
-		data.createdAt instanceof Date &&
-		data.updatedAt instanceof Date &&
+		typeof data.createdAt === "string" &&
+		typeof data.updatedAt === "string" &&
 		isPostArray(data.posts)
 	)
 		return true;
