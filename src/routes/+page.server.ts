@@ -15,7 +15,7 @@ export const actions: Actions = {
 
 		if (!token) return;
 
-		cookies.set("token", token);
+		cookies.set("token", token, { maxAge: 60 * 60 * 24 * 30 });
 		return { username: username.toString(), hypers: [] as HyperDisplay[] };
 	},
 	login: async ({ request, cookies }) => {
@@ -29,7 +29,7 @@ export const actions: Actions = {
 
 		if (!data) return;
 
-		cookies.set("token", data.token);
+		cookies.set("token", data.token, { maxAge: 60 * 60 * 24 * 30 });
 		return { username: username.toString(), hypers: data.hypers };
 	}
 };
