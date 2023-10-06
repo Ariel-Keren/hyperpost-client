@@ -4,9 +4,9 @@
 </script>
 
 {#if $hypers}
-	<div class="flex flex-col items-center w-full">
+	<div class="flex flex-col items-center gap-10 w-full">
 		<h1 class="text-gray-200 font-medium text-3xl">Your Hypers</h1>
-		<div class="flex flex-col">
+		<div class="flex flex-col items-center w-full gap-2">
 			{#each $hypers as hyper}
 				<HyperDisplay {hyper} />
 			{/each}
