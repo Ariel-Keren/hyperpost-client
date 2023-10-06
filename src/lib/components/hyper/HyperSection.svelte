@@ -1,8 +1,11 @@
 <script lang="ts">
 	import type { Hyper } from "$lib/types";
+	import Title from "../global/Title.svelte";
 
 	export let hyper: Hyper;
 </script>
 
-<h1 class="text-gray-200">{hyper.name}</h1>
-<p class="text-gray-300">{hyper.description}</p>
+<div class="flex flex-col items-center">
+	<Title>{hyper.name}</Title>
+	<p class="text-gray-300">{hyper.description}</p>
+</div>
