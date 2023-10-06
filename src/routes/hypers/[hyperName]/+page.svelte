@@ -11,9 +11,7 @@
 
 	let hyper: Hyper | null | undefined = undefined;
 
-	const { hyperName } = $page.params;
-
-	onMount(async () => (hyper = await getHyper(hyperName)));
+	$: $page.params && (async () => (hyper = await getHyper($page.params.hyperName)))();
 </script>
 
 <Header />
