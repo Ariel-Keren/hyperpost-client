@@ -7,7 +7,8 @@ const createHyper = async (name: string, description: string) => {
 	const sessionToken = get(token);
 	const createdBy = get(username);
 
-	if (!sessionToken || !createdBy) return;
+	if (!sessionToken || !createdBy || !name.replaceAll(" ", "") || !description.replaceAll(" ", ""))
+		return;
 
 	const response = await fetch(`${API_URL}/hypers`, {
 		method: "POST",
