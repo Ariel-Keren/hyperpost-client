@@ -1,10 +1,10 @@
 import API_URL from "./API_URL";
 
-const register = async (formUsername: string, password: string) => {
+const register = async (username: string, password: string) => {
 	const response = await fetch(`${API_URL}/auth/register`, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify({ username: formUsername, password })
+		body: JSON.stringify({ username, password })
 	});
 
 	if (!response.ok) return;

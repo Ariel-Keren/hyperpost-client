@@ -1,11 +1,11 @@
 import API_URL from "./API_URL";
 import { isHyperDisplayArray } from "$lib/types";
 
-const login = async (formUsername: string, password: string) => {
+const login = async (username: string, password: string) => {
 	const response = await fetch(`${API_URL}/auth/login`, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify({ username: formUsername, password })
+		body: JSON.stringify({ username, password })
 	});
 
 	if (!response.ok) return;
