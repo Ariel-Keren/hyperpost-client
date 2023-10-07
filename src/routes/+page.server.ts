@@ -9,27 +9,39 @@ export const actions: Actions = {
 		const username = formData.get("username");
 		const password = formData.get("password");
 
-		if (!username || !password) return;
+		if (
+			!username ||
+			!password ||
+			!username.toString().replaceAll(" ", "") ||
+			!password.toString().replaceAll(" ", "")
+		)
+			return;
 
-		const token = await register(username.toString(), password.toString());
+		const token = await register(username.toString().trim(), password.toString().trim());
 
 		if (!token) return;
 
 		cookies.set("token", token, { maxAge: 60 * 60 * 24 * 30 });
-		return { username: username.toString(), hypers: [] as HyperDisplay[] };
+		return { username: username.toString().trim(), hypers: [] as HyperDisplay[] };
 	},
 	login: async ({ request, cookies }) => {
 		const formData = await request.formData();
 		const username = formData.get("username");
 		const password = formData.get("password");
 
-		if (!username || !password) return;
+		if (
+			!username ||
+			!password ||
+			!username.toString().replaceAll(" ", "") ||
+			!password.toString().replaceAll(" ", "")
+		)
+			return;
 
-		const data = await login(username.toString(), password.toString());
+		const data = await login(username.toString().trim(), password.toString().trim());
 
 		if (!data) return;
 
 		cookies.set("token", data.token, { maxAge: 60 * 60 * 24 * 30 });
-		return { username: username.toString(), hypers: data.hypers };
+		return { username: username.toString().trim(), hypers: data.hypers };
 	}
 };
