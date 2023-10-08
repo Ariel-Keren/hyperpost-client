@@ -1,12 +1,12 @@
 <script lang="ts">
-	import type { Post } from "$lib/types";
+	import { fetchedHyper } from "$lib/stores";
 	import PostDisplay from "./PostDisplay.svelte";
-
-	export let posts: Post[];
 </script>
 
-<div class="flex flex-col">
-	{#each posts as post}
-		<PostDisplay {post} />
-	{/each}
-</div>
+{#if $fetchedHyper}
+	<div class="flex flex-col">
+		{#each $fetchedHyper.posts as post}
+			<PostDisplay {post} />
+		{/each}
+	</div>
+{/if}

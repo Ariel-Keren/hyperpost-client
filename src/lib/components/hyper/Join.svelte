@@ -1,9 +1,8 @@
 <script lang="ts">
+	import { fetchedHyper } from "$lib/stores";
 	import joinHyper from "$lib/api/joinHyper";
 
-	export let hyperName: string;
-
-	const joinCurrentHyper = () => joinHyper(hyperName);
+	const joinCurrentHyper = async () => await joinHyper($fetchedHyper?.name ?? "");
 </script>
 
 <button

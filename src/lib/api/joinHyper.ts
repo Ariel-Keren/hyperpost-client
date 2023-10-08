@@ -7,7 +7,7 @@ const joinHyper = async (hyperName: string) => {
 	const sessionToken = get(token);
 	const user = get(username);
 
-	if (!sessionToken || !user) return;
+	if (!sessionToken || !user || !hyperName.replaceAll(" ", "")) return;
 
 	const response = await fetch(`${API_URL}/users/${user}`, {
 		method: "PATCH",
