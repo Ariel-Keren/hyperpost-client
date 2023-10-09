@@ -4,9 +4,9 @@
 </script>
 
 {#if $fetchedHyper}
-	<div class="flex flex-col">
-		{#each $fetchedHyper.posts as post}
-			<PostDisplay {post} />
+	<div class="flex flex-col gap-5 my-5">
+		{#each $fetchedHyper.posts as post, index}
+			<PostDisplay {post} {index} />
 		{/each}
 	</div>
 {/if}
