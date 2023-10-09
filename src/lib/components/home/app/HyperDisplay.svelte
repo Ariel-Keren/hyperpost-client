@@ -1,13 +1,10 @@
 <script lang="ts">
+	import getFormattedDate from "$lib/getFormattedDate";
 	import type { HyperDisplay } from "$lib/types";
 
 	export let hyper: HyperDisplay;
 
-	const date = new Date(hyper.createdAt);
-	const day = date.getDate();
-	const month = date.toLocaleString("en-US", { month: "long" });
-	const year = date.getFullYear();
-	const createdAt = `${month} ${day}, ${year}`;
+	const createdAt = getFormattedDate(hyper.createdAt);
 </script>
 
 <a href={`/hypers/${hyper.name}`} class="w-1/2">
