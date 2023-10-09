@@ -5,15 +5,20 @@
 	import { hypers, fetchedHyper } from "$lib/stores";
 	import Join from "./Join.svelte";
 	import CreatePost from "./CreatePost.svelte";
+	import getFormattedDate from "$lib/getFormattedDate";
 
 	$: canUserJoin =
 		!$hypers || !$hypers.some((currentHyper) => currentHyper.name === $fetchedHyper?.name);
 </script>
 
 {#if $fetchedHyper}
-	<div class="flex flex-col items-center gap-5">
+	<div class="flex flex-col items-center gap-2">
 		<Title>{$fetchedHyper.name}</Title>
 		<p class="text-gray-300 text-xl">{$fetchedHyper.description}</p>
+		<p class="text-gray-500">
+			Created by <span class="text-gray-400">{$fetchedHyper.createdBy}</span> on
+			<span class="text-gray-400">{getFormattedDate($fetchedHyper.createdAt)}</span>
+		</p>
 		{#if canUserJoin}
 			<Join />
 		{/if}
