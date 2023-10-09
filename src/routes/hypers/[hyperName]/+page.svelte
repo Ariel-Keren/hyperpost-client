@@ -8,7 +8,12 @@
 	import Message from "$lib/components/global/Message.svelte";
 	import HyperSection from "$lib/components/hyper/HyperSection.svelte";
 
-	$: $page.params && (async () => ($fetchedHyper = await getHyper($page.params.hyperName)))();
+	const fetchHyper = async () => {
+		$fetchedHyper = undefined;
+		$fetchedHyper = await getHyper($page.params.hyperName);
+	};
+
+	$: $page.params && fetchHyper();
 </script>
 
 <Header />
