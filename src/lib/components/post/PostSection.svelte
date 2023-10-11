@@ -10,13 +10,15 @@
 </script>
 
 {#if post}
-	<div class="flex flex-col items-center gap-2">
+	<div class="flex flex-col items-center gap-10">
 		<Title>{post.title}</Title>
-		<p class="text-gray-300 text-xl">{post.text}</p>
-		<p class="text-gray-500">
-			Created by <span class="text-gray-400">{post.createdBy}</span> on
-			<span class="text-gray-400">{getFormattedDate(post.createdAt)}</span>
-		</p>
+		<div class="flex flex-col gap-5 p-10 w-1/2 bg-gray-900 bg-opacity-50 rounded">
+			<p class="text-gray-300 text-xl whitespace-pre-wrap">{post.text}</p>
+			<p class="text-gray-500">
+				Created by <span class="text-gray-400">{post.createdBy}</span> on
+				<span class="text-gray-400">{getFormattedDate(post.createdAt)}</span>
+			</p>
+		</div>
 		<hr class="w-1/2 border-gray-900" />
 		{#if !post.comments.length}
 			<Message>Looks like there are no comments</Message>
