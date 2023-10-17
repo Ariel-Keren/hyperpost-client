@@ -6,8 +6,9 @@
 	import Message from "../global/Message.svelte";
 	import CommentList from "./CommentList.svelte";
 	import Username from "../global/Username.svelte";
+	import CreateComment from "./CreateComment.svelte";
 
-	const post = $fetchedHyper?.posts[Number($page.params.postIndex)];
+	$: post = $fetchedHyper?.posts[Number($page.params.postIndex)];
 </script>
 
 {#if post}
@@ -23,6 +24,7 @@
 			</div>
 		</div>
 		<hr class="w-1/2 border-gray-900" />
+		<CreateComment />
 		{#if !post.comments.length}
 			<Message>Looks like there are no comments</Message>
 		{:else}

@@ -3,7 +3,7 @@
 	import { fetchedHyper } from "$lib/stores";
 	import Comment from "./Comment.svelte";
 
-	const comments = $fetchedHyper?.posts[Number($page.params.postIndex)].comments;
+	$: comments = $fetchedHyper?.posts[Number($page.params.postIndex)].comments;
 </script>
 
 {#if comments}
