@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { hypers } from "$lib/stores";
 	import Title from "../../global/Title.svelte";
+	import CreateHyper from "./CreateHyper.svelte";
 	import HyperDisplay from "./HyperDisplay.svelte";
 </script>
 
@@ -11,6 +12,7 @@
 			{#each $hypers as hyper}
 				<HyperDisplay {hyper} />
 			{/each}
+			<CreateHyper />
 		</div>
 	</div>
 {/if}

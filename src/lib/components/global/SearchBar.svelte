@@ -13,9 +13,9 @@
 	};
 </script>
 
-<form on:submit|preventDefault={navigateToSearchedHyper} class="group/search-bar flex items-center">
+<form on:submit|preventDefault={navigateToSearchedHyper} class="group/search-bar flex">
 	<button
-		class="group/search-button flex justify-center items-center h-full pl-2 border-y-2 border-l-2 border-y-dark border-l-dark rounded-l-full outline-none transition-colors group-focus-within/search-bar:border-hover"
+		class="group/search-button flex justify-center items-center pl-2 border-y-2 border-l-2 border-y-dark border-l-dark rounded-l-full outline-none transition-colors group-focus-within/search-bar:border-hover"
 		><iconify-icon
 			icon="carbon:search"
 			class="text-dim text-xl transition-colors group-hover/search-button:text-dim-hover"
@@ -25,6 +25,6 @@
 		bind:value={searchedHyper}
 		bind:this={searchInputRef}
 		placeholder="Search Hyper"
-		class="peer w-28 bg-darker text-white border-y-2 border-r-2 border-y-dark border-r-dark rounded-r-full p-1 outline-none transition-all placeholder:text-dim group-focus-within/search-bar:border-hover group-focus-within/search-bar:w-48"
+		class="w-28 bg-darker text-white border-y-2 border-r-2 border-y-dark border-r-dark rounded-r-full p-1 outline-none transition-all placeholder:text-dim group-focus-within/search-bar:border-hover group-focus-within/search-bar:w-48"
 	/>
 </form>
