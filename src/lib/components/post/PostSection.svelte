@@ -18,7 +18,7 @@
 			<div class="flex flex-col items-start gap-1">
 				<Username username={post.createdBy} />
 				<div class="flex flex-col gap-5 p-7 bg-dark rounded">
-					<p class="text-gray-300 text-xl whitespace-pre-wrap">{post.text}</p>
+					<p class="text-white text-xl whitespace-pre-wrap">{post.text}</p>
 					<p class="text-dim">
 						Posted on {getFormattedDate(post.createdAt)}
 					</p>
