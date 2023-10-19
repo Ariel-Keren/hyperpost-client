@@ -26,7 +26,7 @@
 		{#if canUserJoin}
 			<Join />
 		{/if}
-		<hr class="w-1/2 border-gray-900" />
+		<hr class="w-1/2 border-dark" />
 		{#if !canUserJoin}
 			<CreatePost />
 		{/if}
