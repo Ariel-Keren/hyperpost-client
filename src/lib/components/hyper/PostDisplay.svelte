@@ -2,6 +2,8 @@
 	import type { Post } from "$lib/types";
 	import { page } from "$app/stores";
 	import Username from "../global/Username.svelte";
+	import Button from "../global/Button.svelte";
+	import getFormattedDate from "$lib/getFormattedDate";
 
 	export let post: Post;
 	export let index: number;
@@ -9,18 +11,34 @@
 
 <a href={`/hypers/${$page.params.hyperName}/posts/${index}`}>
 	<div
-		class="flex flex-col p-5 border-b-2 border-b-green-200 bg-gray-900 bg-opacity-50 rounded-t transition-transform hover:scale-105"
+		class="flex flex-col items-start gap-1 p-5 border-b-2 border-b-primary bg-dark rounded-t transition-transform hover:scale-105"
 	>
-		<Username username={post.createdBy} />
-		<h2 class="text-gray-200 font-medium">{post.title}</h2>
-		<p
-			class="text-gray-300 whitespace-pre-wrap border-l-2 border-l-gray-800 p-5 mt-5 mb-1 bg-gray-950 rounded-r"
-		>
+		<div class="flex justify-between items-center w-full">
+			<div class="flex flex-col items-start">
+				<Username username={post.createdBy} />
+				<h2 class="text-white font-medium">{post.title}</h2>
+			</div>
+			<div class="flex items-center gap-1">
+				<span class="text-white font-medium text-2xl">0</span><iconify-icon
+					icon="ph:heart-fill"
+					class="text-warning text-2xl"
+				/>
+			</div>
+		</div>
+		<p class="w-full text-white whitespace-pre-wrap p-5 mt-5 mb-1 bg-darker rounded">
 			{post.text}
 		</p>
-		<p class="text-gray-500">
-			{post.comments.length}
-			<span class="text-gray-600">comment{post.comments.length !== 1 && "s"}</span>
-		</p>
+		<div class="flex justify-between items-center w-full mt-2">
+			<div>
+				<p class="text-dim font-medium">
+					{post.comments.length}
+					comment{post.comments.length !== 1 && "s"}
+				</p>
+				<p class="text-dim">Posted on {getFormattedDate(post.createdAt)}</p>
+			</div>
+			<Button onClick={() => {}} color="warning"
+				><iconify-icon icon="ph:heart-fill" />Favorite</Button
+			>
+		</div>
 	</div>
 </a>

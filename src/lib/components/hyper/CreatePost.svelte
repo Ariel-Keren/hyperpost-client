@@ -2,6 +2,7 @@
 	import createPost from "$lib/api/createPost";
 	import { username, fetchedHyper } from "$lib/stores";
 	import type { Post } from "$lib/types";
+	import Button from "../global/Button.svelte";
 
 	let title = "";
 	let body = "";
@@ -33,24 +34,19 @@
 	};
 </script>
 
-<form
-	on:submit={createCurrentPost}
-	class="group flex flex-col items-start gap-2 my-2 opacity-50 focus-within:opacity-100"
->
+<form class="group flex flex-col items-start gap-2 my-2 opacity-50 focus-within:opacity-100">
 	<input
 		bind:value={title}
 		placeholder="Title"
-		class="w-52 bg-gray-950 text-gray-200 border-2 border-gray-800 rounded-lg p-1 outline-none transition-colors placeholder:text-gray-500 focus:border-gray-700"
+		class="w-52 bg-darker text-white border-2 border-dark rounded-lg p-1 outline-none transition-colors placeholder:text-dim focus:border-hover"
 	/>
 	<textarea
 		bind:value={body}
 		placeholder="Body"
 		maxlength="500"
-		class="w-96 bg-gray-950 text-gray-200 border-2 border-gray-800 rounded-lg p-2 outline-none resize-none transition-colors placeholder:text-gray-500 focus:border-gray-700"
+		class="w-96 bg-darker text-white border-2 border-dark rounded-lg p-2 outline-none resize-none transition-colors placeholder:text-dim focus:border-hover"
 	/>
-	<input
-		type="submit"
-		value="Post"
-		class="text-gray-200 font-medium uppercase py-1 px-8 border-2 border-green-200 rounded hidden cursor-pointer transition-colors hover:bg-green-200 hover:text-gray-950 group-focus-within:block"
-	/>
+	<Button onClick={createCurrentPost} color="primary"
+		><iconify-icon icon="material-symbols:post" />Post</Button
+	>
 </form>

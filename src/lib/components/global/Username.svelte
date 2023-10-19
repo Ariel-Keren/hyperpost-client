@@ -2,7 +2,10 @@
 	export let username: string;
 </script>
 
-<div class="flex items-center gap-[2px]">
-	<iconify-icon icon="mdi:user-circle" class="text-green-200 text-xl" />
-	<p class="text-gray-200 text-lg">{username}</p>
-</div>
+<a
+	href={`/users/${username}`}
+	class="flex justify-center items-center gap-1 p-2 px-3 bg-hover rounded transition-colors hover:bg-primary"
+>
+	<iconify-icon icon="carbon:user-filled" class="text-white text-lg bg-dark p-1 rounded-full" />
+	<p class="text-white font-medium">{username}</p>
+</a>

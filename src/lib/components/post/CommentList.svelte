@@ -7,7 +7,7 @@
 </script>
 
 {#if comments}
-	<div class="flex flex-col gap-2">
+	<div class="flex flex-col gap-2 mb-10">
 		{#each comments as comment}
 			<Comment {comment} />
 		{/each}
