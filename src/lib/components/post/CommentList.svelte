@@ -3,7 +3,7 @@
 	import { fetchedHyper } from "$lib/stores";
 	import Comment from "./Comment.svelte";
 
-	$: comments = $fetchedHyper?.posts[Number($page.params.postIndex)].comments;
+	$: comments = $fetchedHyper?.posts.find((post) => post._id === $page.params.postID)?.comments;
 </script>
 
 {#if comments}

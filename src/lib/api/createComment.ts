@@ -1,24 +1,26 @@
+import type { Comment, Post } from "$lib/types";
 import { get } from "svelte/store";
-import { token, username } from "$lib/stores";
+import { fetchedHyper, token, username } from "$lib/stores";
 import API_URL from "./API_URL";
 import { page } from "$app/stores";
 
 const createComment = async (text: string) => {
 	const sessionToken = get(token);
 	const createdBy = get(username);
-	const { hyperName, postIndex } = get(page).params;
+	const hyper = get(fetchedHyper);
+	const { postID } = get(page).params;
 
-	if (!sessionToken || !createdBy || !hyperName.replaceAll(" ", "") || !text.replaceAll(" ", ""))
-		return;
+	if (!sessionToken || !createdBy || !hyper || !text.replaceAll(" ", "")) return;
 
-	const response = await fetch(
-		`${API_URL}/hypers/${hyperName}/posts/${Number(postIndex)}/comments`,
-		{
-			method: "POST",
-			headers: { "Content-Type": "application/json", authorization: sessionToken },
-			body: JSON.stringify({ text, createdBy })
-		}
-	);
+	const postIndex = hyper.posts.findIndex((currentPost) => currentPost._id === postID);
+
+	if (postIndex === -1) return;
+
+	const response = await fetch(`${API_URL}/hypers/${hyper.name}/posts/${postID}/comments`, {
+		method: "POST",
+		headers: { "Content-Type": "application/json", authorization: sessionToken },
+		body: JSON.stringify({ text, createdBy })
+	});
 
 	if (!response.ok) return;
 
@@ -28,11 +30,26 @@ const createComment = async (text: string) => {
 		!data ||
 		typeof data !== "object" ||
 		!("createdAt" in data) ||
-		typeof data.createdAt !== "string"
+		!("id" in data) ||
+		typeof data.createdAt !== "string" ||
+		typeof data.id !== "string"
 	)
 		return;
 
-	return data.createdAt;
+	const newComment: Comment = {
+		text,
+		createdBy,
+		createdAt: data.createdAt,
+		updatedAt: data.createdAt,
+		_id: data.id
+	};
+	const newComments = [...hyper.posts[postIndex].comments, newComment];
+	const newPost: Post = { ...hyper.posts[postIndex], comments: newComments };
+	const newPosts = [...hyper.posts];
+	newPosts[postIndex] = newPost;
+	fetchedHyper.update((currentHyper) =>
+		currentHyper ? { ...currentHyper, posts: newPosts } : null
+	);
 };
 
 export default createComment;

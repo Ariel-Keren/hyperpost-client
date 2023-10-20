@@ -10,7 +10,7 @@
 
 	const fetchHyper = async () => {
 		$fetchedHyper = undefined;
-		$fetchedHyper = await getHyper($page.params.hyperName);
+		$fetchedHyper = await getHyper();
 	};
 
 	$: $page.params && fetchHyper();

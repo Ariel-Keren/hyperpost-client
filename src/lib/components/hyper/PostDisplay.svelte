@@ -7,10 +7,9 @@
 	import changeFavoriteState from "$lib/api/favoritePost";
 
 	export let post: Post;
-	export let index: number;
 </script>
 
-<a href={`/hypers/${$page.params.hyperName}/posts/${index}`}>
+<a href={`/hypers/${$page.params.hyperName}/posts/${post._id}`}>
 	<div
 		class="flex flex-col items-start gap-1 p-5 border-b-2 border-b-primary bg-dark rounded-t transition-transform hover:scale-105"
 	>
@@ -39,7 +38,7 @@
 			</div>
 			<Button
 				onClick={() => {
-					changeFavoriteState(index, true);
+					changeFavoriteState(post._id, true);
 					console.log("favorite");
 				}}
 				color="warning"><iconify-icon icon="ph:heart-fill" />Favorite</Button

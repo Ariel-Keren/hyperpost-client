@@ -7,7 +7,7 @@
 	import Username from "../global/Username.svelte";
 	import CreateComment from "./CreateComment.svelte";
 
-	$: post = $fetchedHyper?.posts[Number($page.params.postIndex)];
+	$: post = $fetchedHyper?.posts.find((currentPost) => currentPost._id === $page.params.postID);
 </script>
 
 {#if post}

@@ -3,6 +3,7 @@ export type Comment = {
 	createdBy: string;
 	createdAt: string;
 	updatedAt: string;
+	_id: string;
 };
 
 export type Post = {
@@ -13,6 +14,7 @@ export type Post = {
 	createdAt: string;
 	updatedAt: string;
 	comments: Comment[];
+	_id: string;
 };
 
 export type Hyper = {
@@ -56,10 +58,12 @@ const isCommentArray = (data: unknown): data is Post[] =>
 			"createdBy" in element &&
 			"createdAt" in element &&
 			"updatedAt" in element &&
+			"_id" in element &&
 			typeof element.text === "string" &&
 			typeof element.createdBy === "string" &&
 			typeof element.createdAt === "string" &&
-			typeof element.updatedAt === "string"
+			typeof element.updatedAt === "string" &&
+			typeof element._id === "string"
 	);
 
 const isPostArray = (data: unknown): data is Post[] =>
@@ -74,16 +78,18 @@ const isPostArray = (data: unknown): data is Post[] =>
 			"createdAt" in element &&
 			"updatedAt" in element &&
 			"comments" in element &&
+			"_id" in element &&
 			typeof element.title === "string" &&
 			typeof element.text === "string" &&
 			typeof element.createdBy === "string" &&
 			typeof element.createdAt === "string" &&
 			typeof element.updatedAt === "string" &&
-			isCommentArray(element.comments)
+			isCommentArray(element.comments) &&
+			typeof element._id === "string"
 	);
 
-export const isHyper = (data: unknown): data is Hyper => {
-	if (
+export const isHyper = (data: unknown): data is Hyper =>
+	!!(
 		data &&
 		typeof data === "object" &&
 		"name" in data &&
@@ -98,7 +104,4 @@ export const isHyper = (data: unknown): data is Hyper => {
 		typeof data.createdAt === "string" &&
 		typeof data.updatedAt === "string" &&
 		isPostArray(data.posts)
-	)
-		return true;
-	return false;
-};
+	);

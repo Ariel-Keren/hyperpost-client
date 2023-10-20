@@ -2,10 +2,12 @@ import { hypers, token, username } from "$lib/stores";
 import { get } from "svelte/store";
 import API_URL from "./API_URL";
 import type { HyperDisplay } from "$lib/types";
+import { page } from "$app/stores";
 
-const joinHyper = async (hyperName: string) => {
+const joinHyper = async () => {
 	const sessionToken = get(token);
 	const user = get(username);
+	const { hyperName } = get(page).params;
 
 	if (!sessionToken || !user || !hyperName.replaceAll(" ", "")) return;
 

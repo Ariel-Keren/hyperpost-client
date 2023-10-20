@@ -6,7 +6,7 @@
 {#if $fetchedHyper}
 	<div class="flex flex-col gap-5 mb-10">
 		{#each $fetchedHyper.posts as post, index}
-			<PostDisplay {post} {index} />
+			<PostDisplay {post} />
 		{/each}
 	</div>
 {/if}

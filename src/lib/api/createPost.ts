@@ -7,7 +7,7 @@ import type { Post } from "$lib/types";
 const createPost = async (title: string, body: string) => {
 	const sessionToken = get(token);
 	const createdBy = get(username);
-	const hyperName = get(page).params.hyperName;
+	const { hyperName } = get(page).params;
 
 	if (
 		!sessionToken ||
@@ -32,7 +32,9 @@ const createPost = async (title: string, body: string) => {
 		!data ||
 		typeof data !== "object" ||
 		!("createdAt" in data) ||
-		typeof data.createdAt !== "string"
+		!("id" in data) ||
+		typeof data.createdAt !== "string" ||
+		typeof data.id !== "string"
 	)
 		return;
 
@@ -43,7 +45,8 @@ const createPost = async (title: string, body: string) => {
 		favorites: 0,
 		createdAt: data.createdAt,
 		updatedAt: data.createdAt,
-		comments: []
+		comments: [],
+		_id: data.id
 	};
 	fetchedHyper.update((hyper) => (hyper ? { ...hyper, posts: [...hyper.posts, newPost] } : null));
 };

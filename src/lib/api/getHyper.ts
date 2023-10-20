@@ -2,9 +2,11 @@ import { get } from "svelte/store";
 import API_URL from "./API_URL";
 import { token } from "$lib/stores";
 import { isHyper } from "$lib/types";
+import { page } from "$app/stores";
 
-const getHyper = async (hyperName: string) => {
+const getHyper = async () => {
 	const sessionToken = get(token);
+	const { hyperName } = get(page).params;
 
 	if (!sessionToken || !hyperName.replaceAll(" ", "")) return null;
 
