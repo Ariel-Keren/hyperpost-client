@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Title from "../global/Title.svelte";
-	import Message from "../global/Message.svelte";
 	import PostDisplayList from "./PostDisplayList.svelte";
 	import { hypers, fetchedHyper } from "$lib/stores";
 	import Join from "./Join.svelte";
@@ -30,10 +29,6 @@
 		{#if !canUserJoin}
 			<CreatePost />
 		{/if}
-		{#if !$fetchedHyper.posts.length && canUserJoin}
-			<Message>Looks like there aren't any posts here</Message>
-		{:else}
-			<PostDisplayList />
-		{/if}
+		<PostDisplayList />
 	</div>
 {/if}

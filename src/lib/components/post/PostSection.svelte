@@ -3,7 +3,6 @@
 	import { fetchedHyper } from "$lib/stores";
 	import getFormattedDate from "$lib/getFormattedDate";
 	import Title from "../global/Title.svelte";
-	import Message from "../global/Message.svelte";
 	import CommentList from "./CommentList.svelte";
 	import Username from "../global/Username.svelte";
 	import CreateComment from "./CreateComment.svelte";
@@ -27,10 +26,6 @@
 		</div>
 		<hr class="w-1/2 border-dark" />
 		<CreateComment />
-		{#if !post.comments.length}
-			<Message>Looks like there are no comments</Message>
-		{:else}
-			<CommentList />
-		{/if}
+		<CommentList />
 	</div>
 {/if}
