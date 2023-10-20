@@ -1,7 +1,8 @@
 import { get } from "svelte/store";
-import { token, username } from "$lib/stores";
+import { fetchedHyper, token, username } from "$lib/stores";
 import API_URL from "./API_URL";
 import { page } from "$app/stores";
+import type { Post } from "$lib/types";
 
 const createPost = async (title: string, body: string) => {
 	const sessionToken = get(token);
@@ -35,7 +36,16 @@ const createPost = async (title: string, body: string) => {
 	)
 		return;
 
-	return data.createdAt;
+	const newPost: Post = {
+		title,
+		text: body,
+		createdBy,
+		favorites: 0,
+		createdAt: data.createdAt,
+		updatedAt: data.createdAt,
+		comments: []
+	};
+	fetchedHyper.update((hyper) => (hyper ? { ...hyper, posts: [...hyper.posts, newPost] } : null));
 };
 
 export default createPost;

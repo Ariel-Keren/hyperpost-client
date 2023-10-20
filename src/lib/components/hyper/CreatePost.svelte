@@ -1,15 +1,11 @@
 <script lang="ts">
 	import createPost from "$lib/api/createPost";
-	import { username, fetchedHyper } from "$lib/stores";
-	import type { Post } from "$lib/types";
 	import Button from "../global/Button.svelte";
 
 	let title = "";
 	let body = "";
 
 	const createCurrentPost = async () => {
-		if (!$username || !$fetchedHyper) return;
-
 		const titleCopy = title;
 		const bodyCopy = body;
 		title = "";
@@ -17,21 +13,7 @@
 
 		if (!titleCopy.replaceAll(" ", "") || !bodyCopy.replaceAll(" ", "")) return;
 
-		const createdAt = await createPost(titleCopy.trim(), bodyCopy.trim());
-
-		if (!createdAt) return;
-
-		const newPost: Post = {
-			title: titleCopy.trim(),
-			text: bodyCopy.trim(),
-			createdBy: $username,
-			favorites: 0,
-			createdAt,
-			updatedAt: createdAt,
-			comments: []
-		};
-		const newPosts = [...$fetchedHyper.posts, newPost];
-		$fetchedHyper = { ...$fetchedHyper, posts: newPosts };
+		await createPost(titleCopy.trim(), bodyCopy.trim());
 	};
 </script>
 
