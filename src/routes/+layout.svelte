@@ -1,5 +1,6 @@
 <script lang="ts">
 	import "../app.css";
+	import "iconify-icon";
 	import { onMount } from "svelte";
 	import { hypers, token, username } from "$lib/stores";
 	import session from "$lib/api/session";

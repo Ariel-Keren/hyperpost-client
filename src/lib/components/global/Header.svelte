@@ -1,5 +1,4 @@
 <script lang="ts">
-	import "iconify-icon";
 	import SearchBar from "./SearchBar.svelte";
 </script>
 
