@@ -25,6 +25,7 @@
 			title: titleCopy.trim(),
 			text: bodyCopy.trim(),
 			createdBy: $username,
+			favorites: 0,
 			createdAt,
 			updatedAt: createdAt,
 			comments: []

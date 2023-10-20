@@ -4,6 +4,7 @@
 	import Username from "../global/Username.svelte";
 	import Button from "../global/Button.svelte";
 	import getFormattedDate from "$lib/getFormattedDate";
+	import changeFavoriteState from "$lib/api/favoritePost";
 
 	export let post: Post;
 	export let index: number;
@@ -19,7 +20,7 @@
 				<h2 class="text-white font-medium">{post.title}</h2>
 			</div>
 			<div class="flex items-center gap-1">
-				<span class="text-white font-medium text-2xl">0</span><iconify-icon
+				<span class="text-white font-medium text-2xl">{post.favorites}</span><iconify-icon
 					icon="ph:heart-fill"
 					class="text-warning text-2xl"
 				/>
@@ -36,8 +37,12 @@
 				</p>
 				<p class="text-dim">Posted on {getFormattedDate(post.createdAt)}</p>
 			</div>
-			<Button onClick={() => {}} color="warning"
-				><iconify-icon icon="ph:heart-fill" />Favorite</Button
+			<Button
+				onClick={() => {
+					changeFavoriteState(index, true);
+					console.log("favorite");
+				}}
+				color="warning"><iconify-icon icon="ph:heart-fill" />Favorite</Button
 			>
 		</div>
 	</div>

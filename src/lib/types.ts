@@ -9,6 +9,7 @@ export type Post = {
 	title: string;
 	text: string;
 	createdBy: string;
+	favorites: number;
 	createdAt: string;
 	updatedAt: string;
 	comments: Comment[];
