@@ -33,7 +33,10 @@
 					class="group flex items-center"
 				>
 					{#if isFavorite}
-						<iconify-icon icon="ph:heart-fill" class="text-warning text-2xl" />
+						<iconify-icon
+							icon="ph:heart-fill"
+							class="text-warning text-2xl transition-colors group-hover:text-warning-hover"
+						/>
 					{:else}
 						<iconify-icon
 							icon="ph:heart-bold"
