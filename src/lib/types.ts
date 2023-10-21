@@ -30,6 +30,7 @@ export type HyperDisplay = {
 	name: string;
 	createdBy: string;
 	createdAt: string;
+	favorites: string[];
 };
 
 const isArray = (data: unknown): data is unknown[] => Array.isArray(data);

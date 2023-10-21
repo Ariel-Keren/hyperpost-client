@@ -34,7 +34,8 @@ const joinHyper = async () => {
 	const newHyperDisplay: HyperDisplay = {
 		name: hyperName,
 		createdBy: data.createdBy,
-		createdAt: data.createdAt
+		createdAt: data.createdAt,
+		favorites: []
 	};
 	hypers.update((prevHypers) =>
 		prevHypers ? [...prevHypers, newHyperDisplay] : [newHyperDisplay]
