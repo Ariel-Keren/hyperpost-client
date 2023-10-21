@@ -52,7 +52,7 @@
 		<div class="flex flex-col">
 			<p class="text-dim font-medium">
 				{post.comments.length}
-				comment{post.comments.length !== 1 && "s"}
+				comment{post.comments.length !== 1 ? "s" : ""}
 			</p>
 			<p class="text-dim">Posted on {getFormattedDate(post.createdAt)}</p>
 		</div>
