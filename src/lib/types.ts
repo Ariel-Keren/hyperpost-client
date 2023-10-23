@@ -1,6 +1,13 @@
+export type CommentLocation = {
+	postID: string;
+	commentID: string;
+};
+
 export type Comment = {
 	text: string;
 	createdBy: string;
+	likes: number;
+	dislikes: number;
 	createdAt: string;
 	updatedAt: string;
 	_id: string;
@@ -31,6 +38,8 @@ export type HyperDisplay = {
 	createdBy: string;
 	createdAt: string;
 	favorites: string[];
+	likes: CommentLocation[];
+	dislikes: CommentLocation[];
 };
 
 const isArray = (data: unknown): data is unknown[] => Array.isArray(data);

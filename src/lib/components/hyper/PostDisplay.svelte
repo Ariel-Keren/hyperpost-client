@@ -5,16 +5,13 @@
 	import getFormattedDate from "$lib/getFormattedDate";
 	import changeFavoriteState from "$lib/api/changeFavoriteState";
 	import { hypers } from "$lib/stores";
+	import Reaction from "../global/Reaction.svelte";
 
 	export let post: Post;
 
 	$: hyper = $hypers?.find((currentHyper) => currentHyper.name === $page.params.hyperName);
 	$: isFavorite = hyper?.favorites?.includes(post._id);
-	const changeCurrentFavoriteState = async () => {
-		if (isFavorite === undefined) return;
-
-		await changeFavoriteState(post._id, !isFavorite);
-	};
+	const changeCurrentFavoriteState = async () => await changeFavoriteState(post._id, !isFavorite);
 </script>
 
 <a href={`/hypers/${$page.params.hyperName}/posts/${post._id}`}>
@@ -26,25 +23,14 @@
 				<Username username={post.createdBy} />
 				<h2 class="text-white font-medium">{post.title}</h2>
 			</div>
-			<div class="flex items-center gap-1">
-				<span class="text-white font-medium text-2xl">{post.favorites}</span>
-				<button
-					on:click|preventDefault={changeCurrentFavoriteState}
-					class="group flex items-center"
-				>
-					{#if isFavorite}
-						<iconify-icon
-							icon="ph:heart-fill"
-							class="text-warning text-2xl transition-colors group-hover:text-warning-hover"
-						/>
-					{:else}
-						<iconify-icon
-							icon="ph:heart-bold"
-							class="text-dim-hover text-2xl transition-colors group-hover:text-warning"
-						/>
-					{/if}
-				</button>
-			</div>
+			<Reaction
+				count={post.favorites}
+				isActive={!!isFavorite}
+				activeIcon="ph:heart-fill"
+				inactiveIcon="ph:heart-bold"
+				color="warning"
+				onClick={changeCurrentFavoriteState}
+			/>
 		</div>
 		<p class="w-full text-white whitespace-pre-wrap p-5 mt-5 mb-1 bg-darker rounded">
 			{post.text}

@@ -39,6 +39,8 @@ const createComment = async (text: string) => {
 	const newComment: Comment = {
 		text,
 		createdBy,
+		likes: 0,
+		dislikes: 0,
 		createdAt: data.createdAt,
 		updatedAt: data.createdAt,
 		_id: data.id
